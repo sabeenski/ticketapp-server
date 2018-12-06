@@ -22,15 +22,14 @@ class TicketsListContainer extends Component {
 
 
   render() { 
-    
+
     if(!this.props.tickets) return `There are no tickets for this event at the moment.`
      else {
        return ( 
          <div className="container">
-           <p>Ticket for : {this.props.events && this.props.events.name} </p>
+           {/* <h4>Tickets for : {this.props.events && this.props.events[this.props.match.params.id].name} </h4> */}
            {this.props.tickets && this.props.tickets.map(ticket => {
              return (
-
                 <div key={ticket.id}>
                   <div> <h4>-----------------------------------</h4>
                     <b>Ticket number: </b> <Link to={`/tickets/${ticket.id}`}> {ticket.id} </Link>

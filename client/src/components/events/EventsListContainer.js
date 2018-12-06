@@ -29,7 +29,7 @@ class EventsListContainer extends Component {
                 
                 </div>
               )
-           })} {!this.props.currentUser && <h5>To create new events, please login!<button><Link to='/login'>Login</Link></button>
+           })} {!this.props.currentUser && <h5>To create new events and tickets, please login!<button><Link to='/login'>Login</Link></button>
 </h5>}
                   
                   {this.props.currentUser && <EventFormContainer />}
