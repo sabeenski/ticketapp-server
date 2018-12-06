@@ -1,8 +1,7 @@
-import { JsonController, Get, Param, Body, Post, HttpCode, NotFoundError, CurrentUser, Authorized, Patch, } from 'routing-controllers'
+import { JsonController, Get, Param, Body, Post, HttpCode, NotFoundError, CurrentUser, Authorized, Patch,  } from 'routing-controllers'
 import Ticket from './entity'
 import Event from '../events/entity'
 import User from '../users/entity';
-// import User from '../users/entity';
 
 @JsonController()
 export default class TicketController {
@@ -57,12 +56,7 @@ export default class TicketController {
 
     }    */
 
-
-
-
-
-
-    
+ 
     
 
 
@@ -77,7 +71,7 @@ export default class TicketController {
 
   ///Making the work above!! 
 
-  @Authorized()
+  // @Authorized()
   @Post('/events/:id([0-9])/tickets')
   @HttpCode(201)
   async createTicket(
@@ -95,17 +89,12 @@ export default class TicketController {
       })
       return newTicket.save() 
     } 
-
-
-  @Get('/tickets')
-  allTickets() {
-    return Ticket.find({relations: ["event", "comments"]})
-  }
+ 
 
 
 
   @Get('/events/:id/tickets')
-  async getTicket(
+  async getTickets(
       @Param('id') id: number
   ) {
       const event = await Event.findOne(id)
@@ -114,6 +103,13 @@ export default class TicketController {
   }   
 
 
+  @Get('/tickets/:id')
+  async getTicket(
+    @Param('id') id: number
+  ){
+    const ticket = await Ticket.findOne(id, {relations: ["comments"]})
+    return ticket
+  }
  
 
   @Authorized()
