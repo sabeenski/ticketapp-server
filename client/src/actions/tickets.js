@@ -2,7 +2,7 @@ import request from 'superagent'
 
 export const TICKETS_FETCHED = 'TICKETS_FETCHED'
 export const TICKET_CREATE_SUCCESS = 'TICKET_CREATE_SUCCESS'
-
+export const TICKET_FETCHED = 'TICKET_FETCHED'
 
 
 const baseUrl = 'http://localhost:4000'
@@ -33,3 +33,15 @@ export const createTicket = (data, id) => dispatch => {
     })
     .catch(console.error)
 }
+
+const ticketFetched = ticket => ({
+  type: TICKET_FETCHED,
+  ticket
+})
+
+export const loadTicket = (ticketId) => dispatch => {
+  request
+  .get(`${baseUrl}/tickets/${ticketId}`)
+  .then(response => dispatch(ticketFetched(response.body)))
+  .catch(console.error)
+} 

@@ -7,6 +7,7 @@ import NavBar from './components/NavBar'
 import EventsListContainer from './components/events/EventsListContainer';
 import TicketsListContainer from './components/tickets/TicketsListContainer';
 import TicketDetailsContainer from './components/tickets/TicketDetailsContainer';
+import TicketFormContainer from './components/tickets/TicketFormContainer';
 
 
 class App extends Component {
@@ -24,8 +25,8 @@ class App extends Component {
         {/* <Route exact path="/" component={EventFormContainer} /> */}
         <Route exact path="/events/:id/tickets" component={TicketsListContainer} />
         <Route exact path="/tickets/:id" component={TicketDetailsContainer} />
-        {/* <Route exact path="/events/:id/tickets" component={TicketFormContainer} /> */}
-        {/* <Route exact path="/events/:id/tickets/:id" component={TicketFormContainer} /> */}
+        <Route exact path="/events/:id/tickets" component={TicketFormContainer} />    
+        {/* <Route exact path="/events/:id/tickets/:id" component={TicketFormContainer} />  */}
         <Route exact path="/" render={ () => <Redirect to="/events" /> } />
 
 

@@ -1,37 +1,36 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {createTicket} from '../../actions/tickets'
-import {loadEvents} from '../../actions/events'
+import LoginForm from '../login/LoginForm';
 
 class TicketFormContainer extends Component {
 
   
   
-  state = {
-    seller: this.props.userId,
-    price: null,
-    picture: "",
-    description: "",
-    createdOn: ""
-  }
-
+  state = {}
+  
   
   onChange = (event) => {
     this.setState({
       ...this.state,
-      [event.target.name] : event.target.value
+      [event.target.name] : event.target.value,
+      event: this.props.match.params.id,
+      user: this.props.userId,
+
+
       
     })
   }
-
+  
   onSubmit = (event) => {
     event.preventDefault()
-    this.props.createTicket(this.state, Number(this.props.events.match.params.id))
-
+    this.props.createTicket(this.state, Number(this.props.match.params.id))
+    
   }
   
   
   render() { 
+    // console.log(this.props.match.params.id)
 
     return ( 
       <div className="container">
@@ -48,6 +47,7 @@ class TicketFormContainer extends Component {
 
             <button>Create New Ticket</button>
         </form>
+        
       </div>
      );
   }
@@ -55,7 +55,9 @@ class TicketFormContainer extends Component {
 
 const mapStateToProps = state => ({
   tickets: state.tickets,
-  events: state.events
+  currentUser: state.currentUser
+
+  // events: state.events
 }) 
 
-export default connect(mapStateToProps, {createTicket, loadEvents})(TicketFormContainer) 
+export default connect(mapStateToProps, { createTicket })(TicketFormContainer) 

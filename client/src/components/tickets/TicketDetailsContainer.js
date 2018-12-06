@@ -7,13 +7,15 @@ import {Link} from 'react-router-dom'
 
 
 class TicketDetailsContainer extends Component {
-  
+  state = {
+
+  }
+
   render() { 
     
        return ( 
          <div className="container">
-           <p>Hello</p>
-                  
+           "show some details"
          </div>
      );
   }
