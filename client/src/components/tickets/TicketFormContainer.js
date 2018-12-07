@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {createTicket} from '../../actions/tickets'
+import {addComment} from '../../actions/comments'
 
 class TicketFormContainer extends Component {
 
@@ -10,11 +11,12 @@ class TicketFormContainer extends Component {
       ...this.state,
       [event.target.name] : event.target.value,
       event: this.props.match.params.id,
-      user: this.props.userId,
-
-
+      user: this.props.user,
+      comment: this.props.comments
+      
       
     })
+    console.log(this.props.user)
   }
   
   onSubmit = (event) => {
@@ -50,9 +52,10 @@ class TicketFormContainer extends Component {
 
 const mapStateToProps = state => ({
   tickets: state.tickets,
+  comments: state.comments,
   currentUser: state.currentUser
 
   // events: state.events
 }) 
 
-export default connect(mapStateToProps, { createTicket })(TicketFormContainer) 
+export default connect(mapStateToProps, { createTicket, addComment })(TicketFormContainer) 

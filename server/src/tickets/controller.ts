@@ -7,9 +7,11 @@ import User from '../users/entity';
 export default class TicketController {
 
   /* @Authorized() = Remember to uncomment*/
-  /* @Post('/tickets')
+  /* @Post('/events/:id([0-9])/tickets')
   @HttpCode(201)
   async createTicket(
+    @Param('id')id: number,
+
     @Body() newTicket: Ticket
   ){
       const ticket = await Ticket.findOne({
@@ -19,11 +21,11 @@ export default class TicketController {
     
       if(!ticket) throw new NotFoundError('Cannot find ticket with that id.')
 
-      const ticketsBySeller = await Ticket.find({
-        where: { seller : ticket.seller.id }
+      const ticketsByUser = await Ticket.find({
+        where: { user : ticket.user.id }
       })
-      if(!ticketsBySeller) throw new NotFoundError('Cannot find tickets by this seller.')
-      if(ticketsBySeller.length === 1) ticket.fraudRisk += 10
+      if(!ticketsByUser) throw new NotFoundError('Cannot find tickets by this seller.')
+      if(ticketsByUser.length === 1) ticket.fraudRisk += 10
       
       
       const ticketsByEvent = await Ticket.find({
@@ -72,7 +74,7 @@ export default class TicketController {
   ///Making the work above!! 
 
   // @Authorized()
-  @Post('/events/:id([0-9])/tickets')
+  @Post('/events/:id/tickets')
   @HttpCode(201)
   async createTicket(
   @CurrentUser() user: User,

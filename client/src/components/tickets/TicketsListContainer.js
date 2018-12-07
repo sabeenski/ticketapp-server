@@ -12,6 +12,7 @@ class TicketsListContainer extends Component {
 
   componentWillMount() {
       this.props.loadTickets(Number(this.props.match.params.id))
+      this.props.loadEvents()
 
   }
   
@@ -23,10 +24,11 @@ class TicketsListContainer extends Component {
      else {
        return ( 
          <div className="container">
-           {/* <h4>Tickets for : {this.props.events && this.props.events[this.props.match.params.id].name} </h4> */}
            {this.props.tickets.map(ticket => {
+           console.log(this.props.events)
              return (
                 <div key={ticket.id}> 
+                   {/* <h4>Tickets for : {this.props.events} </h4>   */}
                   
                   <div> <h4>-----------------------------------</h4>
                     <b>Ticket number: </b> <Link to={`/tickets/${ticket.id}`}> {ticket.id} </Link>

@@ -16,7 +16,7 @@ export default class Comment extends BaseEntity {
   ticket: Ticket
 
   @ManyToOne(_type => User, user => user.comments, {eager: true})
-  author: User
+  user: User
 
 
 

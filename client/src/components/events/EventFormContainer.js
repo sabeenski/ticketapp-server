@@ -60,7 +60,7 @@ class EventFormContainer extends Component {
 
 const mapStateToProps = state => ({
   events: state.events,
-	users: state.users 
+	// users: state.users 
 })
 
 

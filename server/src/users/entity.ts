@@ -40,7 +40,7 @@ export default class User extends BaseEntity {
   @OneToMany(_type => Event, event => event.user)
   events: Event[]
 
-  @OneToMany(_type => Comment, comment => comment.author)
+  @OneToMany(_type => Comment, comment => comment.user)
   comments: Comment[]
 
   async setPassword(rawPassword: string) {

@@ -6,25 +6,22 @@ import User from '../users/entity'
 @JsonController()
 export default class CommentController{
 
-  @Authorized() 
-  @Post('/tickets/id')
+   @Authorized() 
+  @Post('/tickets/:id')
   @HttpCode(201)
-  async createComment(
+  async addComment(
     @CurrentUser() user: User,
     @Param ('id') id: number,
     @Body() comment: Comment
     ){
     const ticket = await Ticket.findOne(id)
     if(!ticket) throw new NotFoundError('Cannot find event with that id')
-
     const newComment = await Comment.create({
       ...comment,
       ticket,
       user
-    }
-
-    )
-    return await Comment.findOne(newComment.id)
+    })
+    return newComment.save()
     } 
 
 
@@ -34,7 +31,7 @@ export default class CommentController{
   }
   
   
-  @Get('/comments/:id([0-9]+)')
+  @Get('/comments/:id)')
   getComment(
     @Param('id') id: number
   ) {

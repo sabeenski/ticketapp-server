@@ -1,6 +1,6 @@
 import { ADD_COMMENT } from "../actions/comments";
 
-export default (state = null, action = {}) => {
+export default (state = [], action = {}) => {
   switch(action.type){
     
     case ADD_COMMENT:
