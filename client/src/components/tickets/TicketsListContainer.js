@@ -3,8 +3,6 @@ import {loadTickets} from '../../actions/tickets'
 import {loadEvents} from '../../actions/events'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import TicketFormContainer from './TicketFormContainer'
-import LoginForm from '../login/LoginForm';
 
 
 

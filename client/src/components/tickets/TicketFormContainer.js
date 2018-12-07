@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {createTicket} from '../../actions/tickets'
-import LoginForm from '../login/LoginForm';
 
 class TicketFormContainer extends Component {
 
-  
-  
-  state = {}
-  
   
   onChange = (event) => {
     this.setState({

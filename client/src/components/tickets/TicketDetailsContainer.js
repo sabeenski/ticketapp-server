@@ -3,19 +3,24 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {loadTickets} from '../../actions/tickets'
+import CommentForm from '../comments/CommentForm';
 
 
 
 class TicketDetailsContainer extends Component {
   state = {
-
+    content: ''
   }
 
+  
+
+  
   render() { 
     
        return ( 
          <div className="container">
-           "show some details"
+           <CommentForm />
          </div>
      );
   }
@@ -27,4 +32,4 @@ const mapStateToProps = state => ({
 
 }) 
 
-export default connect(mapStateToProps)(TicketDetailsContainer)
+export default connect(mapStateToProps, {loadTickets})(TicketDetailsContainer)

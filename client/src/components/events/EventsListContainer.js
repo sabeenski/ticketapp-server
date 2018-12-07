@@ -3,6 +3,7 @@ import {loadEvents} from '../../actions/events'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import EventFormContainer from './EventFormContainer';
+import { signup } from '../../actions/users';
 
 
 
@@ -29,9 +30,9 @@ class EventsListContainer extends Component {
                 
                 </div>
               )
-           })} {!this.props.currentUser && <h5>To create new events and tickets, please login!<button><Link to='/login'>Login</Link></button>
-</h5>}
-                  
+           })} {!this.props.currentUser  &&  <h5>To create new events and new tickets, please login or signup!<button><Link to='/login'>Login</Link></button>
+           <button><Link to='/signup'>Signup</Link></button></h5>
+               }
                   {this.props.currentUser && <EventFormContainer />}
          </div>
      );
@@ -41,7 +42,8 @@ class EventsListContainer extends Component {
  
 const mapStateToProps = state => ({
   events: state.events, 
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  signup: state.signup
 
 }) 
 

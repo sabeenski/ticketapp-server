@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { createEvent } from '../../actions/events'
-import {userId} from '../../jwt'
 import {getUsers} from '../../actions/users'
 
 
@@ -61,8 +60,6 @@ class EventFormContainer extends Component {
 
 const mapStateToProps = state => ({
   events: state.events,
-  authenticated: state.currentUser !== null,
-  userId: state.currentUser && userId(state.currentUser.jwt),
 	users: state.users 
 })
 
