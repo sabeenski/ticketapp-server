@@ -34,7 +34,7 @@ class CommentForm extends Component {
         <div className="container">
           <div>
             {this.props.comments && this.props.comments.map(comment => 
-            <p><b>{comment.user.firstName}</b>: {comment.content}</p>)}
+            <p key={comment.id}><b>{comment.user.firstName}</b>: {comment.content}</p>)}
             {!this.props.currentUser  && <i>Please login or sign up to add your comments.
 
               <button><Link to='/login'>Login</Link></button>

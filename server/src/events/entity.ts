@@ -28,7 +28,6 @@ export default class Event extends BaseEntity {
   tickets: Ticket[]
 
   @ManyToOne(_type => User, user => user.events)
-  // @JoinColumn()
 
   user: User
 
