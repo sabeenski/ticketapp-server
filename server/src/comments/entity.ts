@@ -12,10 +12,10 @@ export default class Comment extends BaseEntity {
   @Column('text', {nullable:false})
   content: string
 
-  @ManyToOne(_type => Ticket, ticket => ticket.comments, {eager: true})
+  @ManyToOne(_type => Ticket, ticket => ticket.comments)
   ticket: Ticket
 
-  @ManyToOne(_type => User, user => user.comments, {eager: true})
+  @ManyToOne(_type => User, user => user.comments)
   user: User
 
 

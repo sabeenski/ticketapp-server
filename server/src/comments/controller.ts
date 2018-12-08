@@ -16,12 +16,12 @@ export default class CommentController{
     ){
     const ticket = await Ticket.findOne(id)
     if(!ticket) throw new NotFoundError('Cannot find event with that id')
-    const newComment = await Comment.create({
+    return await Comment.create({
       ...comment,
       ticket,
       user
-    })
-    return newComment.save()
+    }).save()
+    
     } 
 
 
@@ -33,8 +33,8 @@ export default class CommentController{
     @Param('id') id: number
   ) {
     const ticket = await Ticket.findOne(id)
-    const comments = await Comment.find({where: {ticket}})
-    return comments
+    return await Comment.find({where:{ticket}, relations: ["user", "ticket"]})
+    
     }  
 
 

@@ -27,12 +27,12 @@ const ticketCreateSuccess = ticket => ({
   type: TICKET_CREATE_SUCCESS,
   ticket
 })
-export const createTicket = (data, id) => (dispatch) => {
-  // const jwt = getState().currentUser
-  // if (isExpired(jwt)) return dispatch(logout())
+export const createTicket = (data, id) => (dispatch, getState) => {
+  const jwt = getState().currentUser.jwt
+  if (isExpired(jwt)) return dispatch(logout())
   request
     .post(`${baseUrl}/events/${id}/tickets`)
-    // .set('Authorization', `Bearer ${jwt}`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(data, id)
     .then(response => {
       dispatch(ticketCreateSuccess(response.body))
