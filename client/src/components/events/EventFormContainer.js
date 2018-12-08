@@ -9,11 +9,11 @@ import {getUsers} from '../../actions/users'
 class EventFormContainer extends Component {
 
   
-  state = { 
-    name: '',
-    description: '',
-    picture: ''
-   }
+  // state = { 
+  //   name: '',
+  //   description: '',
+  //   picture: ''
+  //  }
 
    
 
@@ -29,7 +29,9 @@ class EventFormContainer extends Component {
       this.setState({
         name: '',
         description: '',
-        picture: ''
+        picture: '',
+        startDate: '',
+        endDate: ''
       })
       this.props.createEvent(this.state)
     }
@@ -50,6 +52,12 @@ class EventFormContainer extends Component {
             <label> <h5> Picture: </h5>
               <input type="url" onChange={this.onChange} name="picture"></input>
             </label>
+            <label htmlFor="start"> <h5> Starts on: </h5>
+              <input type="date" onChange={this.onChange} name="startDate"></input>
+            </label>
+            <label htmlFor="end"> <h5> Ends on: </h5>
+              <input type="date" onChange={this.onChange} name="endDate"></input>
+            </label> 
 
             <button className="btn waves-effect waves-light">Create New Event</button>
         </form>

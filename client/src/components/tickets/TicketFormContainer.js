@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {createTicket} from '../../actions/tickets'
 import {addComment} from '../../actions/comments'
+import { Link } from 'react-router-dom'
 
 class TicketFormContainer extends Component {
 
@@ -27,10 +28,9 @@ class TicketFormContainer extends Component {
   
   
   render() { 
-    // console.log(this.props.match.params.id)
-
     return ( 
       <div className="container">
+      {this.props.currentUser && 
         <form onSubmit={this.onSubmit}>
             <label> <h5> Price: </h5>
               <input type="text" onChange={this.onChange} name="price" required></input>
@@ -43,8 +43,11 @@ class TicketFormContainer extends Component {
             </label>
 
             <button>Create New Ticket</button>
-        </form>
-        
+        </form>}
+        {!this.props.tickets && <i>No tickets for this event at the moment.</i>}
+        {!this.props.currentUser  && <i>Please login or sign up to add new tickets.
+          <button><Link to='/login'>Login</Link></button>
+          <button><Link to='/signup'>Signup</Link></button></i>}        
       </div>
      );
   }

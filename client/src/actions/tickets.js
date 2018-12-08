@@ -1,4 +1,7 @@
 import request from 'superagent'
+import {logout} from './users'
+import {isExpired} from '../jwt'
+
 
 export const TICKETS_FETCHED = 'TICKETS_FETCHED'
 export const TICKET_CREATE_SUCCESS = 'TICKET_CREATE_SUCCESS'
@@ -24,9 +27,12 @@ const ticketCreateSuccess = ticket => ({
   type: TICKET_CREATE_SUCCESS,
   ticket
 })
-export const createTicket = (data, id) => dispatch => {
+export const createTicket = (data, id) => (dispatch) => {
+  // const jwt = getState().currentUser
+  // if (isExpired(jwt)) return dispatch(logout())
   request
     .post(`${baseUrl}/events/${id}/tickets`)
+    // .set('Authorization', `Bearer ${jwt}`)
     .send(data, id)
     .then(response => {
       dispatch(ticketCreateSuccess(response.body))

@@ -3,7 +3,6 @@ import {loadEvents} from '../../actions/events'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import EventFormContainer from './EventFormContainer';
-import { signup } from '../../actions/users';
 
 
 
@@ -25,14 +24,21 @@ class EventsListContainer extends Component {
                   <div>
                     <b>Description: </b>{event.description}
                   </div>
-                  <div><img src = {event.picture} width="50%" alt="event" />
+                  <div>
+                    <b>Starts on: </b>{event.startDate}
+                  </div>
+                  <div>
+                    <b>Ends on: </b>{event.endDate}
+                  </div>
+                  <div>{event.picture && <img src = {event.picture} width="50%" alt="event" />}
                   </div>
                 
                 </div>
               )
-           })} {!this.props.currentUser  &&  <h5>To create new events and new tickets, please login or signup!<button><Link to='/login'>Login</Link></button>
-           <button><Link to='/signup'>Signup</Link></button></h5>
-               }
+            })} <hr/>
+            {!this.props.currentUser  && <i>Please login or sign up to add new events & tickets.
+              <button><Link to='/login'>Login</Link></button>
+              <button><Link to='/signup'>Signup</Link></button></i>}        
                   {this.props.currentUser && <EventFormContainer />}
          </div>
      );

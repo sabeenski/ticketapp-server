@@ -1,4 +1,4 @@
-import {JsonController, Get, Post, Body, HttpCode, Param, NotFoundError, Authorized, CurrentUser} from 'routing-controllers'
+import {JsonController, Get, Post, Body, HttpCode, Param, NotFoundError, CurrentUser, Authorized} from 'routing-controllers'
 import Comment from './entity'
 import Ticket from '../tickets/entity'
 import User from '../users/entity'
@@ -6,8 +6,8 @@ import User from '../users/entity'
 @JsonController()
 export default class CommentController{
 
-   @Authorized() 
-  @Post('/tickets/:id')
+  @Authorized() 
+  @Post('/tickets/:id/comments')
   @HttpCode(201)
   async addComment(
     @CurrentUser() user: User,
@@ -25,17 +25,16 @@ export default class CommentController{
     } 
 
 
-  @Get('/comments')
-  allComments() {
-    return Comment.find()
-  }
   
   
-  @Get('/comments/:id)')
-  getComment(
+  
+  @Get('/tickets/:id/comments')
+  async allComments(
     @Param('id') id: number
   ) {
-      return Comment.findOne(id)
+    const ticket = await Ticket.findOne(id)
+    const comments = await Comment.find({where: {ticket}})
+    return comments
     }  
 
 

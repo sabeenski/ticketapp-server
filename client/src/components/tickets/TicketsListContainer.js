@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom'
 
 class TicketsListContainer extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
       this.props.loadTickets(Number(this.props.match.params.id))
       this.props.loadEvents()
 
@@ -23,15 +23,13 @@ class TicketsListContainer extends Component {
     if(!this.props.tickets) return `There are no tickets for this event at the moment.`
      else {
        return ( 
-         <div className="container">
+         <div className="container">                  
            {this.props.tickets.map(ticket => {
-           console.log(this.props.events)
              return (
                 <div key={ticket.id}> 
-                   {/* <h4>Tickets for : {this.props.events} </h4>   */}
                   
                   <div> <h4>-----------------------------------</h4>
-                    <b>Ticket number: </b> <Link to={`/tickets/${ticket.id}`}> {ticket.id} </Link>
+                    <b>Ticket number: </b> <Link to={`/tickets/${ticket.id}/comments`}> {ticket.id} </Link>
                     <p>Price: {ticket.price} </p>
                     <p>Description: {ticket.description} </p>
                   </div>

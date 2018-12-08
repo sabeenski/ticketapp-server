@@ -24,7 +24,7 @@ class App extends Component {
         <Route exact path="/events" component={EventsListContainer} />
         {/* <Route exact path="/" component={EventFormContainer} /> */}
         <Route exact path="/events/:id/tickets" component={TicketsListContainer} />
-        <Route exact path="/tickets/:id" component={TicketDetailsContainer} />
+        <Route exact path="/tickets/:id/comments" component={TicketDetailsContainer} />
         <Route exact path="/events/:id/tickets" component={TicketFormContainer} />    
         {/* <Route exact path="/events/:id/tickets/:id" component={TicketFormContainer} />  */}
         <Route exact path="/" render={ () => <Redirect to="/events" /> } />

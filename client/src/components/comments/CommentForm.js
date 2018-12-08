@@ -2,62 +2,64 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { addComment } from '../../actions/comments'
 import {getUsers} from '../../actions/users'
-import {loadTickets} from '../../actions/tickets'
-
-
+import {loadTicket} from '../../actions/tickets'
+import { Link } from 'react-router-dom'
 
 
 class CommentForm extends Component {
-
-  /* componentDidMount(){
-    console.log(this.props + "123")
-    // this.props.loadTickets(Number(this.props.match.params.id))
-  } */
-
-
-
-
-   onChange = (event) => {
-     this.setState({
-       [event.target.name] : event.target.value
+  
+  state={}
+    
+    
+      
+    onChange = (event) => {
+      this.setState({
+        [event.target.name] : event.target.value
       })
     }
     
-
     onSubmit = (event) => {
       event.preventDefault()
-      this.props.addComment(this.state.comment, this.props.tickets[0].id)
-      console.log("hey")
+      this.setState({
+        content: '',
+      })
+      this.props.addComment(this.state, Number(this.props.ticket.id))
+      console.log(this.props)
     }
     
     
     
     render() { 
-      
-    return ( 
-      <div className="container">
-        <form onSubmit={this.onSubmit}>
-            <label> <h5> Add your comment:  </h5>
-              <input type="box" onChange={this.onChange} name="comment" required></input>
-            </label>
-            <button >Send</button>
-        </form>
-        {this.props.comments.map(comment => 
-        <div>
-          
-        <p>{comment.content}{comment.user.firstName}</p>
-      </div>
-     )}
-     </div>
-    )}
+      return ( 
+        <div className="container">
+          <div>
+            {this.props.comments && this.props.comments.map(comment => 
+            <p><b>{comment.user.firstName}</b>: {comment.content}</p>)}
+            {!this.props.currentUser  && <i>Please login or sign up to add your comments.
+
+              <button><Link to='/login'>Login</Link></button>
+              <button><Link to='/signup'>Signup</Link></button></i>
+            }
+          </div>
+          <div>
+            {this.props.currentUser && 
+            <form onSubmit={this.onSubmit}>
+              <label> <h5> Add your comment:  </h5>
+                <input type="text" onChange={this.onChange} name="content" required></input>
+              </label>
+              <button >Send</button>
+            </form>}
+          </div>
+        </div>
+      )}
 }
 
 const mapStateToProps = state => ({
   
-  tickets: state.tickets,
-  users: state.users,
-  comments: state.comments
+  ticket: state.ticket,
+  comments: state.comments,
+  currentUser: state.currentUser
 })
 
  
-export default connect(mapStateToProps,  {addComment, getUsers, loadTickets})(CommentForm) 
+export default connect(mapStateToProps,  {addComment, getUsers, loadTicket})(CommentForm) 
