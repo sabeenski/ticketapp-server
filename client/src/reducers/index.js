@@ -4,6 +4,7 @@ import login from './login'
 import currentUser from './currentUser'
 import signup from './signup'
 import events from './events'
+import event from './event'
 import tickets from './tickets'
 import ticket from './ticket'
 import comments from './comments'
@@ -15,6 +16,7 @@ export default combineReducers({
   currentUser,
   signup,
   events,
+  event,
   tickets,
   ticket,
   comments
