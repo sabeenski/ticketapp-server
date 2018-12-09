@@ -16,12 +16,9 @@ class TicketsListContainer extends Component {
 
   }
   
-  
-
-
   render() { 
        return ( 
-         <div className="container"> 
+        <div className="container"> 
           <h3>Tickets for : {this.props.event && this.props.event.name}</h3>  
           {!this.props.tickets && <i>`There are no tickets for this event at the moment.`</i>}
 
@@ -29,11 +26,18 @@ class TicketsListContainer extends Component {
              return (
                 <div key={ticket.id}> 
                   
-                <Link to={`/tickets/${ticket.id}/comments`}><div> <h4>-----------------------------------</h4>
+                  <Link to={`/tickets/${ticket.id}/comments`}><div> 
+                  <h4>-----------------------------------</h4>
+
                     <b>Ticket number: </b>  {ticket.id} 
+
+                    {ticket.fraudRisk > 0 && ticket.fraudRisk < 35 &&  <span className="badge green middle"></span>}
+                    {ticket.fraudRisk > 35 && ticket.fraudRisk < 70 &&  <span className="badge yellow"></span>}
+                    {ticket.fraudRisk > 70 &&  <span className="badge red"></span>}
+                    
                     <p>Price: {ticket.price} €</p>
                     <p>Description: {ticket.description} </p>
-                  </div>
+                </div>
                 </Link>
                 </div>  
               )
