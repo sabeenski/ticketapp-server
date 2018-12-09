@@ -30,11 +30,5 @@ export default class Event extends BaseEntity {
   @ManyToOne(_type => User, user => user.events)
 
   user: User
-
-
-
-
-
-
   
 }

@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { addComment } from '../../actions/comments'
 import {getUsers} from '../../actions/users'
-import { Link } from 'react-router-dom'
 
 
 class CommentForm extends Component {
   
     
-    state={}
+    state = {}
       
     onChange = (event) => {
       this.setState({
@@ -19,6 +18,9 @@ class CommentForm extends Component {
     onSubmit = (event) => {
       event.preventDefault()
       this.props.onSubmit(this.state)
+      this.setState({
+        content: ''
+      })
     }
     
     

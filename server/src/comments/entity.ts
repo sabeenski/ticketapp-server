@@ -19,7 +19,4 @@ export default class Comment extends BaseEntity {
   user: User
 
 
-
-
-  
 }
