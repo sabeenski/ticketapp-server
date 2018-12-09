@@ -41,7 +41,7 @@ class EventFormContainer extends Component {
     render() { 
       
     return ( 
-      <div className="container">
+      <div>
         <form onSubmit={this.onSubmit}>
             <label> <h5> Name: </h5>
               <input type="text" onChange={this.onChange} name="name" required></input>

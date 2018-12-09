@@ -26,16 +26,21 @@ class TicketDetailsContainer extends Component {
       if (this.props.ticket === null) return "Loading..." 
       return ( 
         <div className="container"> 
+          <div className="card-panel">
+
           <h5><b>Event Name: </b>{this.props.ticket.event.name} </h5>
           <h5><b>Price: </b>{this.props.ticket.price}€ </h5>
           <h5><b>Description: </b>{this.props.ticket.description}</h5>
-          <h5><b>FraudRisk: {this.props.ticket.fraudRisk}%</b></h5>
+          <h5><b>FraudRisk: {Math.floor(this.props.ticket.fraudRisk)}%</b></h5>
           <h5><b>Seller: </b> <i>{this.props.ticket.user.firstName}</i></h5>
            <hr/> 
           <h5><b>Comments: </b></h5>
+
           <div>
             {this.props.comments && this.props.comments.map(comment => 
             <p key={comment.id}><b>{comment.user.firstName}</b>: {comment.content}</p>)}
+          </div>
+
             {!this.props.currentUser  && <i>Please login or sign up to add your comments.
 
               <button><Link to='/login'>Login</Link></button>
