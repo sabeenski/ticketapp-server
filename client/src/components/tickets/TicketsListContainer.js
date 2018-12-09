@@ -24,7 +24,7 @@ class TicketsListContainer extends Component {
      else {
        return ( 
          <div className="container"> 
-           <h3>Tickets for : {this.props.tickets[0].event.name}</h3>          
+          {/* {this.props.tickets && <h3>Tickets for : {this.props.tickets[0].event.name} </h3>}        */}
            {this.props.tickets.map(ticket => {
              return (
                 <div key={ticket.id}> 

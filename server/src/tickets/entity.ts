@@ -21,7 +21,7 @@ export default class Ticket extends BaseEntity {
   @Column('text', {nullable:true})
   picture: string
 
-  @Column('text', {nullable:true})
+  @Column('float', {default:0})
   fraudRisk: number
 
   @CreateDateColumn({type: "timestamp"})
