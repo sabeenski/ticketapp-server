@@ -5,24 +5,28 @@ import {addComment} from '../../actions/comments'
 import { Link } from 'react-router-dom'
 
 class TicketFormContainer extends Component {
-
+  
+  state={
+    price:'',
+    picture:'',
+    description:''
+  }
   
   onChange = (event) => {
     this.setState({
-      ...this.state,
       [event.target.name] : event.target.value,
-      event: this.props.match.params.id,
-      user: this.props.user,
-      comment: this.props.comments
-      
-      
     })
-    console.log(this.props.user)
   }
+  
   
   onSubmit = (event) => {
     event.preventDefault()
     this.props.createTicket(this.state, Number(this.props.match.params.id))
+    this.setState({
+      price:'',
+      description:'',
+      picture:''
+    })
     
   }
   
@@ -33,13 +37,13 @@ class TicketFormContainer extends Component {
       {this.props.currentUser && 
         <form onSubmit={this.onSubmit}>
             <label> <h5> Price: </h5>
-              <input type="text" onChange={this.onChange} name="price" required></input>
+              <input type="text" onChange={this.onChange} name="price" value={this.state.price} required></input>
             </label>
             <label> <h5> Description: </h5>
-              <input type="text" onChange={this.onChange} name="description" required></input>
+              <input type="text" onChange={this.onChange} name="description" value={this.state.description} required></input>
             </label>
             <label> <h5> Picture: </h5>
-              <input type="url" onChange={this.onChange} name="picture"></input>
+              <input type="url" onChange={this.onChange} name="picture" value={this.state.picture}></input>
             </label>
 
             <button className="btn waves-effect waves-light">Create New Ticket</button>

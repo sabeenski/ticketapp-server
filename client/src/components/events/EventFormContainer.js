@@ -9,11 +9,11 @@ import {getUsers} from '../../actions/users'
 class EventFormContainer extends Component {
 
   
-  // state = { 
-  //   name: '',
-  //   description: '',
-  //   picture: ''
-  //  }
+  state = { 
+    name: '',
+    description: '',
+    picture: ''
+   }
 
    
 
@@ -23,6 +23,7 @@ class EventFormContainer extends Component {
        
       })
     }
+
     
     onSubmit = (event) => {
       event.preventDefault()
@@ -44,19 +45,19 @@ class EventFormContainer extends Component {
       <div>
         <form onSubmit={this.onSubmit}>
             <label> <h5> Name: </h5>
-              <input type="text" onChange={this.onChange} name="name" required></input>
+              <input type="text" onChange={this.onChange} name="name" value={this.state.name} required></input>
             </label>
             <label> <h5> Description: </h5>
-              <input type="text" onChange={this.onChange} name="description" required></input>
+              <input type="text" onChange={this.onChange} name="description" value={this.state.description} required></input>
             </label>
             <label> <h5> Picture: </h5>
-              <input type="url" onChange={this.onChange} name="picture"></input>
+              <input type="url" onChange={this.onChange} name="picture" value={this.state.picture}></input>
             </label>
             <label htmlFor="start"> <h5> Starts on: </h5>
-              <input type="date" onChange={this.onChange} name="startDate"></input>
+              <input type="date" onChange={this.onChange} name="startDate" value={this.state.startDate}></input>
             </label>
             <label htmlFor="end"> <h5> Ends on: </h5>
-              <input type="date" onChange={this.onChange} name="endDate"></input>
+              <input type="date" onChange={this.onChange} name="endDate" value={this.state.endDate}></input>
             </label> 
 
             <button className="btn waves-effect waves-light">Create New Event</button>

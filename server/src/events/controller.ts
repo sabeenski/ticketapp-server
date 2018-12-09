@@ -16,7 +16,6 @@ export default class EventController {
     @Param('id') id: number
   ){
    return Event.findOne(id)
-    
   }
 
   
@@ -27,12 +26,9 @@ export default class EventController {
     @CurrentUser() user: User,
     @Body() event: Event
   ){
-    //if(user) event.user = user
     return await Event.create({
       ...event,
       user
-    }).save()
-    //return await event.save()
-    
+    }).save()    
   } 
 }

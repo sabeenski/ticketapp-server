@@ -21,12 +21,9 @@ export default class CommentController{
       ticket,
       user
     }).save()
-    
     } 
 
-
-  
-  
+    
   
   @Get('/tickets/:id/comments')
   async allComments(
