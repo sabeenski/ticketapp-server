@@ -23,7 +23,8 @@ class TicketsListContainer extends Component {
     if(!this.props.tickets) return `There are no tickets for this event at the moment.`
      else {
        return ( 
-         <div className="container">                  
+         <div className="container"> 
+          {/* {this.props.tickets && <h3>Tickets for : {this.props.tickets[0].event.name} </h3>}        */}
            {this.props.tickets.map(ticket => {
              return (
                 <div key={ticket.id}> 
