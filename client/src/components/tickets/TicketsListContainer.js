@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {loadTickets} from '../../actions/tickets'
-import {loadEvents} from '../../actions/events'
+import {loadEvent} from '../../actions/events'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
@@ -12,7 +12,7 @@ class TicketsListContainer extends Component {
 
   componentDidMount() {
       this.props.loadTickets(Number(this.props.match.params.id))
-      this.props.loadEvents()
+      this.props.loadEvent(Number(this.props.match.params.id))
 
   }
   
@@ -24,14 +24,14 @@ class TicketsListContainer extends Component {
      else {
        return ( 
          <div className="container"> 
-          {/* {this.props.tickets && <h3>Tickets for : {this.props.tickets[0].event.name} </h3>}        */}
+          <h3>Tickets for : {this.props.event && this.props.event.name}</h3>     
            {this.props.tickets.map(ticket => {
              return (
                 <div key={ticket.id}> 
                   
                   <div> <h4>-----------------------------------</h4>
                     <b>Ticket number: </b> <Link to={`/tickets/${ticket.id}/comments`}> {ticket.id} </Link>
-                    <p>Price: {ticket.price} </p>
+                    <p>Price: {ticket.price} €</p>
                     <p>Description: {ticket.description} </p>
                   </div>
                 </div>   
@@ -48,9 +48,9 @@ class TicketsListContainer extends Component {
  
 const mapStateToProps = state => ({
   tickets: state.tickets,
-  events: state.events
+  event: state.event
 }) 
 
-export default connect(mapStateToProps, {loadTickets, loadEvents})(TicketsListContainer) 
+export default connect(mapStateToProps, {loadTickets, loadEvent})(TicketsListContainer) 
  
 

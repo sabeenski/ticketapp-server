@@ -4,6 +4,7 @@ import {isExpired} from '../jwt'
 
 
 export const EVENTS_FETCHED = 'EVENTS_FETCHED'
+export const EVENT_FETCHED = 'EVENT_FETCHED'
 export const EVENT_CREATE_SUCCESS = 'EVENT_CREATE_SUCCESS'
 
 
@@ -39,6 +40,17 @@ export const createEvent = (data) => (dispatch, getState) => {
     })
     .catch(console.error)
 
+}
 
-
+const eventFetched = event => ({
+  type: EVENT_FETCHED,
+  event
+})
+export const loadEvent = (id) => (dispatch, getState) => {
+  if(getState().event) return
+  request(`${baseUrl}/events/${id}`)
+    .then(response => {
+      dispatch(eventFetched(response.body))
+    })
+    .catch(console.error)
 }

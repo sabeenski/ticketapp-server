@@ -30,7 +30,7 @@ class TicketDetailsContainer extends Component {
           <h5><b>Price: </b>{this.props.ticket.price}€ </h5>
           <h5><b>Description: </b>{this.props.ticket.description}</h5>
           <h5><b>FraudRisk: {this.props.ticket.fraudRisk}%</b></h5>
-          <h5><b>Author: </b> <i>{this.props.ticket.user.firstName}</i></h5>
+          <h5><b>Seller: </b> <i>{this.props.ticket.user.firstName}</i></h5>
            <hr/> 
           <h5><b>Comments: </b></h5>
           <div>
