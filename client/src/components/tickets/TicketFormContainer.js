@@ -42,9 +42,8 @@ class TicketFormContainer extends Component {
               <input type="url" onChange={this.onChange} name="picture"></input>
             </label>
 
-            <button>Create New Ticket</button>
+            <button className="btn waves-effect waves-light">Create New Ticket</button>
         </form>}
-        {!this.props.tickets && <i>No tickets for this event at the moment.</i>}
         {!this.props.currentUser  && <i>Please login or sign up to add new tickets.
           <button><Link to='/login'>Login</Link></button>
           <button><Link to='/signup'>Signup</Link></button></i>}        

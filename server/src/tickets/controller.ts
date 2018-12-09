@@ -57,7 +57,7 @@ export default class TicketController {
       
       if(ticket.fraudRisk < 5) ticket.fraudRisk = 5
       if(ticket.fraudRisk > 95) ticket.fraudRisk = 95
-
+      
       return ticket
 
     }   

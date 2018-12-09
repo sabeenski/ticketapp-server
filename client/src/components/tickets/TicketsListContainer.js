@@ -20,21 +20,22 @@ class TicketsListContainer extends Component {
 
 
   render() { 
-    if(!this.props.tickets) return `There are no tickets for this event at the moment.`
-     else {
        return ( 
          <div className="container"> 
-          <h3>Tickets for : {this.props.event && this.props.event.name}</h3>     
-           {this.props.tickets.map(ticket => {
+          <h3>Tickets for : {this.props.event && this.props.event.name}</h3>  
+          {!this.props.tickets && <i>`There are no tickets for this event at the moment.`</i>}
+
+           {this.props.tickets && this.props.tickets.map(ticket => {
              return (
                 <div key={ticket.id}> 
                   
-                  <div> <h4>-----------------------------------</h4>
-                    <b>Ticket number: </b> <Link to={`/tickets/${ticket.id}/comments`}> {ticket.id} </Link>
+                <Link to={`/tickets/${ticket.id}/comments`}><div> <h4>-----------------------------------</h4>
+                    <b>Ticket number: </b>  {ticket.id} 
                     <p>Price: {ticket.price} €</p>
                     <p>Description: {ticket.description} </p>
                   </div>
-                </div>   
+                </Link>
+                </div>  
               )
 
            })}
@@ -42,13 +43,13 @@ class TicketsListContainer extends Component {
          </div>
 
 );
-}
+
 }
 }
  
 const mapStateToProps = state => ({
   tickets: state.tickets,
-  event: state.event
+  event: state.event,
 }) 
 
 export default connect(mapStateToProps, {loadTickets, loadEvent})(TicketsListContainer) 
