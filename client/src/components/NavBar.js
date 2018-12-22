@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router'
 import { userId } from '../jwt'
 import { connect } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 
 const NavBar = (props) => {
     const { location, history, user } = props
@@ -15,27 +15,19 @@ const NavBar = (props) => {
            
           <div className="right hide-on-med-and-down">
 
-            {
-              user &&
-              <button>{ user.name }</button>
-            }
-    
-            {
-              location.pathname.indexOf('signup') > 0 &&
-             <button className="btn waves-effect waves-light" onClick={() => history.push('/login')}>Login</button>
-            }
-            {
-              location.pathname.indexOf('login') > 0 &&
-              <button className="btn waves-effect waves-light" onClick={() => history.push('/signup')}>Sign up</button>
-            }
-            {
-              location.pathname.indexOf('events/') > 0 &&
-              <button className="btn waves-effect waves-light" onClick={() => history.push('/')}>All Events</button>
-            }
-            {
-              /events$/.test(location.pathname) &&
-              <button className="btn waves-effect waves-light" onClick={() => history.push('/logout')}>Log out</button>
-            }
+          {props.user !== null && 
+           <div>
+            <Link to = '/logout'><button className="btn waves-effect waves-light">LOGOUT</button></Link>
+           </div>}
+          
+           {props.user === null && 
+           <div>
+            <Link to = '/login'><button className="btn waves-effect waves-light">LOGIN</button></Link>
+            ---
+            <Link to = '/signup'><button className="btn waves-effect waves-light">SIGNUP</button></Link>
+           </div>}
+
+
           </div>
 
         </div>
@@ -48,8 +40,7 @@ const NavBar = (props) => {
     }
     
     const mapStateToProps = state => ({
-      user: state.currentUser && state.users &&
-        state.users[userId(state.currentUser.jwt)]
+      user: state.currentUser 
     })
     
     export default withRouter(
