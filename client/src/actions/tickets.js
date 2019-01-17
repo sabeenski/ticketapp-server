@@ -1,6 +1,7 @@
 import request from 'superagent'
 import {logout} from './users'
 import {isExpired} from '../jwt'
+import { baseUrl } from '../constants'
 
 
 export const TICKETS_FETCHED = 'TICKETS_FETCHED'
@@ -8,7 +9,7 @@ export const TICKET_CREATE_SUCCESS = 'TICKET_CREATE_SUCCESS'
 export const TICKET_FETCHED = 'TICKET_FETCHED'
 
 
-const baseUrl = 'http://localhost:4000'
+// const baseUrl = 'http://localhost:4000'
 
 const ticketsFetched = tickets => ({
   type: TICKETS_FETCHED,

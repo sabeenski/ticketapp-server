@@ -1,12 +1,14 @@
 import request from 'superagent'
 import {logout} from './users'
 import {isExpired} from '../jwt'
+import { baseUrl } from '../constants'
+
 
 
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const COMMENTS_FETCHED = 'COMMENTS_FETCHED'
 
-const baseUrl = 'http://localhost:4000'
+// const baseUrl = 'http://localhost:4000'
 
 const commentAdded = comment => ({
   type: ADD_COMMENT,
